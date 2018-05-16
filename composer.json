@@ -1,0 +1,22 @@
+{
+    "name": "opin/base",
+    "description": "Custom theme",
+    "type": "drupal-custom-theme",
+    "authors": [
+        {
+            "name": "Adrian Rylski",
+            "email": "adrian.rylski@opin.ca"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "composer/installers": "^1.2"
+    },
+    "extra": {
+        "installer-paths": {
+            "docroot/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        }
+    }
+}
