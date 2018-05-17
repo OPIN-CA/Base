@@ -5,7 +5,7 @@ VERISON:              1.1
 package:              Core
 core:                 8.x
 base theme:           stable
-screenshot:           screenshot.svg
+screenshot:           images/screenshot.svg
 
 #Libraries
 libraries:
