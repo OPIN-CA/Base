@@ -27,7 +27,7 @@ From | To
 Theme root folder `base`| your-theme-name
 base.info.yml | your-theme-name `.info.yml`
 Update `name:` & `description:` inside `your-theme-name.info.yml`|
-global library `- base/global` | `- your-theme-name/global`
+Update global library inside `your-theme-name.info.yml` | `- your-theme-name/global`
 base.libraries.yml | your-theme-name `.libraries.yml`
 base.theme | your-theme-name `.theme`
 Any preprocess functions inside `includes` folder | all  `.inc`  files 
