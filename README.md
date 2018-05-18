@@ -26,12 +26,12 @@ Rename the following:
 
 From | To 
 --- | --- 
-**Theme root folder  'base'**| your-theme-name
-**base.info.yml** | your-theme-name.info.yml
-**base.libraries.yml** | your-theme-name.libraries.yml
-**base.theme** | your-theme-name.theme
-**Any preprocess functions inside includes folder** | all .inc files 
-**base.theme** | your-theme-name.theme
+Theme root folder `base`| your-theme-name
+base.info.yml | your-theme-name.info.yml
+base.libraries.yml | your-theme-name.libraries.yml
+base.theme | your-theme-name.theme
+Any preprocess functions inside `includes` folder | all .inc files 
+base.theme | your-theme-name.theme
 
 
 
