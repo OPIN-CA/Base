@@ -20,18 +20,20 @@ $ npm install -g browser-sync
 ```
 ## Installation
 
-Rename theme root frolder
-
 Rename the following:
 
 From | To 
 --- | --- 
 Theme root folder `base`| your-theme-name
 base.info.yml | your-theme-name `.info.yml`
+Update `name:` & `description:` inside `your-theme-name.info.yml`|
+global library `- base/global` | `- your-theme-name/global`
 base.libraries.yml | your-theme-name `.libraries.yml`
 base.theme | your-theme-name `.theme`
 Any preprocess functions inside `includes` folder | all  `.inc`  files 
-base.theme | your-theme-name.theme
+base.breakpoints.yml | your-theme-name `.breakpoints.yml`
+Any `base.` breakpoints |   `your-theme-name.` breakpoints
+
 
 
 
