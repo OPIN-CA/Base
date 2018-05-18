@@ -20,20 +20,20 @@
 
 @include selection($color__primary, white);
 
+//sidebar styling
+// body {
 
-body {
+//   &::-webkit-scrollbar {
+//     width: vr(.4);
+//   }
 
-  &::-webkit-scrollbar {
-    width: vr(.4);
-  }
+//   &::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,65,116,0.3);
+//   }
 
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,65,116,0.3);
-  }
+//   &::-webkit-scrollbar-thumb {
+//     background-color: $color__primary;
+//     outline: 1px solid slategrey;
+//   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: $color__primary;
-    outline: 1px solid slategrey;
-  }
-
-}
+// }
