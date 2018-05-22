@@ -56,11 +56,9 @@ Use Mappy Breakpoint for simpler media queries. Nest media queries inside the de
 ```scss
 .test {
     width: 100%;
-
     @include mappy-bp(med){
       width: 250px;
     }
-
     @include mappy-bp(desk){
       width: 150px;
     }
