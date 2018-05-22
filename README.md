@@ -1,8 +1,5 @@
 # base
-Starterkit base Drupal 8 Theme.
-
-
-
+Starter kit base Drupal 8 Theme.
 
 ## Global Prerequisites
 
@@ -36,25 +33,23 @@ npm install -g browser-sync
 
 Rename the following:
 
-From | To 
---- | --- 
+From | To
+--- | ---
 Theme root folder `base`| your-theme-name
 base.info.yml | your-theme-name `.info.yml`
 Update `name:` & `description:` inside `your-theme-name.info.yml`|
 Update global library inside `your-theme-name.info.yml` | `- your-theme-name/global`
 base.libraries.yml | your-theme-name `.libraries.yml`
 base.theme | your-theme-name `.theme`
-Any preprocess functions inside `includes` folder | all  `.inc`  files 
+Any preprocess functions inside `includes` folder | all  `.inc`  files
 base.breakpoints.yml | your-theme-name `.breakpoints.yml`
-Any `base.` breakpoints inside `your-theme-name.breakpoints.yml`|   `your-theme-name.` 
-
+Any `base.` breakpoints inside `your-theme-name.breakpoints.yml`|   `your-theme-name.`
 
 ## Workflow configuration
 
-
 ### Mappy Breakpoint
 
-Use Mappy Breakpoint for simpler media qqueries. Nest media queries inside the declarations not the other way around. To use `mappy-bp` define your breakpoint inside `010-global/layout/_breakpoints.scss`.
+Use Mappy Breakpoint for simpler media queries. Nest media queries inside the declarations not the other way around. To use `mappy-bp` define your breakpoints inside `010-global/layout/_breakpoints.scss`.
 
 ```scss
 .test {
@@ -72,7 +67,7 @@ Use Mappy Breakpoint for simpler media qqueries. Nest media queries inside the d
 
 ### Susy 2
 
-For flexible grid system use susy. Configure susy in `/010-global/layout/_config.scss` e.g.:
+For flexible grid system use Susy. Configure susy in `/010-global/layout/_config.scss` e.g.:
 
 ```scss
 //Setting Susy map
@@ -147,7 +142,7 @@ use `vr()` units for styling:
 
 ### Naming conventions
 
-Try following BEM as much as possible e.g.:
+Following BEM as much as possible e.g.:
 
 #### Icons
 ```
@@ -158,7 +153,7 @@ icon__arrow-left--active.svg
 icon__arrow-left--hover.svg  
 ```
 
-#### Colors
+#### Colours
 ```scss
 $color__text--dark:              #111111;
 $color__text--medium:            #424242;
@@ -180,18 +175,19 @@ search__pager.scss
 ```
 
 
-#### HTML
+#### Classes
 ```html
-<blockquote class="quote">
-    <p class="quote__content">{{ content.field_quote_content|field_value }}</p>
-    <cite class="quote__author">{{ content.field_quote_author|field_value }}</cite>
-    <div class="quote__heading">{{ content.field_quote_heading|field_value }}</div>
-</blockquote>
+<div class="callout">
+    <h2 class="callout__title"></h2>
+    <div class="callout__content">
+        <div class="callout__image"></div>
+        <div class="callout__body"></div>
+    </div>
+</div>
 ```
 
 ### Gulp
-
-After installation run `gulp` in root directory. Gulp with open `localhost:3000` in your default browser and parse Acquia Dev Desktop locasl site url. If it fails or you are not using Acquia Dev Desktop add url to parse manully inside `gulpfile.js` For browsersync to work make sure [Browsersync](https://www.drupal.org/project/browsersync) is enabled and go to Apperance > Default theme > Settings and check `Enable Browsersync` inside Browsersync Settings at the bottom of the page. As gulp runs, it watches sass and injects changes into the browser.
+After installation run `gulp` in root directory. Gulp with open `localhost:3000` in your default browser and parse Acquia Dev Desktop local site url. If it fails or you are not using Acquia Dev Desktop add url to parse manually inside `var domain = 'auto';` replacing `auto'. For browsersync to work make sure [Browsersync](https://www.drupal.org/project/browsersync) is enabled. Go to Appearance > Default theme > Settings and check `Enable Browsersync` inside Browsersync Settings at the bottom of the page. As gulp runs, it watches sass and injects changes into the browser as you work.
 
 
 ## Maintainers
