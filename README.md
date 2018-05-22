@@ -51,9 +51,6 @@ Any `base.` breakpoints inside `your-theme-name.breakpoints.yml`|   `your-theme-
 
 ## Workflow configuration
 
-### Gulp
-
-After installation run `gulp` in root directory. Gulp with open `localhost:3000` in your default browser and parse Acquia Dev Desktop locasl site url. If it fails or you are not using Acquia Dev Desktop add url to parse manully inside `gulpfile.js` For browsersync to work make sure [Browsersync](https://www.drupal.org/project/browsersync) is enabled and go to Apperance > Default theme > Settings and check `Enable Browsersync` inside Browsersync Settings at the bottom of the page. As gulp runs, it watches sass and injects changes into the browser.
 
 ### Mappy Breakpoint
 
@@ -191,6 +188,10 @@ search__pager.scss
     <div class="quote__heading">{{ content.field_quote_heading|field_value }}</div>
 </blockquote>
 ```
+
+### Gulp
+
+After installation run `gulp` in root directory. Gulp with open `localhost:3000` in your default browser and parse Acquia Dev Desktop locasl site url. If it fails or you are not using Acquia Dev Desktop add url to parse manully inside `gulpfile.js` For browsersync to work make sure [Browsersync](https://www.drupal.org/project/browsersync) is enabled and go to Apperance > Default theme > Settings and check `Enable Browsersync` inside Browsersync Settings at the bottom of the page. As gulp runs, it watches sass and injects changes into the browser.
 
 
 ## Maintainers
