@@ -35,7 +35,7 @@ gulp.task('serve', function() {
     });
   }
 
-  gulp.watch("sass/**/*.scss", gulp.series(['sass']));
+  gulp.watch("sass/**/*.scss").on('change', gulp.series(['sass']));
   gulp.watch("templates/**/*.twig").on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
   gulp.watch('js/*.js').on('change', gulp.series(['browserSyncReload']));
 });
@@ -51,16 +51,16 @@ gulp.task('sass', function() {
       this.emit('end');
     }))
     .pipe(plumber({errorHandler: notify.onError("Error : <%= error.message %>")}))
-    .pipe(sourcemaps.init())
-    .pipe(sourcemaps.identityMap())
-    .pipe(sass({
-      outputStyle: 'expanded'
-    }))
     .pipe(sassLint({
       configFile: '.sass-lint.yml'
      }))
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.identityMap())
+    .pipe(sass({
+      outputStyle: 'expanded'
+    }))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer([
       'ie >= 10',
