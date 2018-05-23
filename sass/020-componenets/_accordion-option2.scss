@@ -43,7 +43,7 @@
   }
 
   .ui-icon-triangle-1-s {
-    &:before {
+    &::before {
       display: block;
       height: 20px;
       content: ' ';
@@ -61,7 +61,7 @@
   }
 
   .ui-icon-triangle-1-e {
-    &:before {
+    &::before {
       display: block;
       height: 20px;
       content: ' ';

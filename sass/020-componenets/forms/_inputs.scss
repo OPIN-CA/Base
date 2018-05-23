@@ -11,7 +11,6 @@ input[type="url"],
 input[type="week"],
 textarea,
 select {
-  border: 0;
   border: 1px solid $color__input-border--normal;
   max-width: 100%;
   padding: .5em;
@@ -28,7 +27,6 @@ select {
 input[type="search"],
 select {
   appearance: none;
-  border: 0;
   border: 1px solid $color__input-border--normal;
   border-radius: 0;
 }

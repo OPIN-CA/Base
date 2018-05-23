@@ -61,7 +61,7 @@ a[data-entity-type="file"]{
   font-weight: 500;
   border-bottom: 1px dotted;
 
-  &:before{
+  &::before{
     position: absolute;
     content: ' ';
     width: .75rem;

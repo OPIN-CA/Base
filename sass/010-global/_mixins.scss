@@ -197,7 +197,6 @@
   }
   #{$wrapper-selector} {
     min-height: 100%;
-    height: auto !important;
     height: 100%;
     margin-bottom: -$footer-height;
     #{$container-selector} {

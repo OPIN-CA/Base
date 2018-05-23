@@ -26,7 +26,7 @@ summary {
    display: none;
  }
 
- &:before {
+ &::before {
    @include mappy-bp(large) {
      // margin-top: -4px;
    }
@@ -50,7 +50,7 @@ summary {
  }
 }
 
-details[open] summary:before {
+details[open] summary::before {
  height: 16px;
  width: 16px;
 
