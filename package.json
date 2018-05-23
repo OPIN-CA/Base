@@ -26,7 +26,8 @@
     "gulp-sass-lint": "^1.3.4",
     "gulp-sourcemaps": "^2.6.1",
     "modularscale-sass": "^3.0.3",
-    "sass-lint": "^1.12.1"
+    "sass-lint": "^1.12.1",
+    "sass-mq": "^4.0.2"
   },
   "author": "Adrian Rylski",
   "license": "ISC"
