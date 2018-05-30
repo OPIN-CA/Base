@@ -2,6 +2,8 @@
 // Set domain to null to disable BrowserSync.
 var domain = 'auto'; 
 
+var sassLintConfigFile = 'sass-lint.yml';
+
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var sassLint = require('gulp-sass-lint');
@@ -14,29 +16,40 @@ var log = require('fancy-log');
 var colors = require('ansi-colors');
 var notify = require('gulp-notify');
 var exec = require('child_process').exec;
+var fs = require('file-system');
 
 if (domain == 'auto') {
   // Attempt to automatically get the domain name from Dev Desktop's config files.
   domain = require('gulp-getdevdesktopdomain');
   if (domain == null) {
-    log.error(colors.red.bold('Error: Could not set BrowserSync domain name automatically.'));
-    log.error(colors.red.bold('Manually set a domain name in gulpfile.js to use BrowserSync.'));
+    log.error(colors.yellow.bold('Warning: Could not set BrowserSync domain name automatically.'));
+    log.error(colors.yellow.bold('  Manually set a domain name in gulpfile.js to use BrowserSync.'));
   } else {
     log.info('Found Dev Desktop domain: ' + colors.magenta(domain));
   }
+}
+
+// Check for existence of Sass-lint config file.
+var runSassLint = false;
+try {
+  fs.accessSync(sassLintConfigFile);
+  runSassLint = true;
+} catch (err) {
+  log.error(colors.yellow.bold(`Warning: Sass-lint config file ${sassLintConfigFile} was not found.`));
 }
 
 gulp.task('serve', function() {
   // Skip BrowserSync init if no domain is provided.
   if (domain) {
     browserSync.init({
-      proxy: domain
+      proxy: domain,
+      scrollRestoreTechnique: 'window.name'
       // browser:     "google chrome"
     });
   }
 
   gulp.watch("sass/**/*.scss").on('change', gulp.series(['sass']));
-  gulp.watch("templates/**/*.twig").on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
+  gulp.watch(["templates/**/*.twig", "includes/**/*.inc"]).on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
   gulp.watch('js/*.js').on('change', gulp.series(['browserSyncReload']));
 });
 
@@ -50,13 +63,19 @@ gulp.task('sass', function() {
       log.error(colors.red.bold('Error (' + error.plugin + '): ' + error.message));
       this.emit('end');
     }))
-    .pipe(plumber({errorHandler: notify.onError("Error : <%= error.message %>")}))
-    .pipe(sassLint({
-      configFile: '.sass-lint.yml'
+    .pipe(plumber({errorHandler: notify.onError("Error : <%= error.message %>")}));
+
+  // Conditionally add sass-lint to the pipe if it has a config file. 
+  // Otherwise it spews out too many warnings that we don't care about.
+  if (runSassLint) {
+    stream = stream.pipe(sassLint({
+      configFile: sassLintConfigFile 
      }))
     .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
-    .pipe(sourcemaps.init())
+    .pipe(sassLint.failOnError());
+  }
+
+  stream = stream.pipe(sourcemaps.init())
     .pipe(sourcemaps.identityMap())
     .pipe(sass({
       outputStyle: 'expanded'
