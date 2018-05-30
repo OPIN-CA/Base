@@ -22,8 +22,8 @@ if (domain == 'auto') {
   // Attempt to automatically get the domain name from Dev Desktop's config files.
   domain = require('gulp-getdevdesktopdomain');
   if (domain == null) {
-    log.error(colors.yellow.bold('Warning: Could not set BrowserSync domain name automatically.'));
-    log.error(colors.yellow.bold('  Manually set a domain name in gulpfile.js to use BrowserSync.'));
+    log.warn(colors.yellow.bold('Warning: Could not set BrowserSync domain name automatically.'));
+    log.warn(colors.yellow.bold('  Manually set a domain name in gulpfile.js to use BrowserSync.'));
   } else {
     log.info('Found Dev Desktop domain: ' + colors.magenta(domain));
   }
@@ -34,8 +34,9 @@ var runSassLint = false;
 try {
   fs.accessSync(sassLintConfigFile);
   runSassLint = true;
+  log.info('Using sass-lint config file: ' + colors.magenta(sassLintConfigFile));
 } catch (err) {
-  log.error(colors.yellow.bold(`Warning: Sass-lint config file ${sassLintConfigFile} was not found.`));
+  log.warn(colors.yellow.bold(`Warning: Sass-lint config file ${sassLintConfigFile} was not found. Sass-lint is disabled.`));
 }
 
 gulp.task('serve', function() {
