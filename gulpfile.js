@@ -2,7 +2,7 @@
 // Set domain to null to disable BrowserSync.
 var domain = 'auto'; 
 
-var sassLintConfigFile = 'sass-lint.yml';
+var sassLintConfigFile = 'base-sass-lint.yml';
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
