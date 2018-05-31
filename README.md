@@ -60,7 +60,7 @@ Use Mappy Breakpoint for simpler media queries. Nest media queries inside the de
     @include mappy-bp(med){
       width: 250px;
     }
-    
+
     @include mappy-bp(desk){
       width: 150px;
     }
@@ -144,7 +144,7 @@ use `vr()` units for styling:
 
 ### Naming conventions
 
-Following BEM as much as possible e.g.:
+Follow BEM as much as possible e.g.:
 
 #### Icons
 ```
@@ -192,4 +192,4 @@ search__pager.scss
 After installation run `gulp` in root directory. Gulp with open `localhost:3000` in your default browser and parse Acquia Dev Desktop local site url. If it fails or you are not using Acquia Dev Desktop add url to parse manually inside `var domain = 'auto';` replacing `auto`. For browsersync to work make sure [Browsersync](https://www.drupal.org/project/browsersync) is enabled. Go to Appearance > Default theme > Settings and check `Enable Browsersync` inside Browsersync Settings at the bottom of the page. As gulp runs, it watches sass and injects changes into the browser as you work.
 
 ## Maintainers
-Base theme is maintained by [Adrian Rylski](https://www.drupal.org/u/liamtoo).
+Base theme is maintained by [Adrian Rylski](https://www.drupal.org/u/liamtoo) & Jesse Kahtava.
