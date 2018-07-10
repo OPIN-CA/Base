@@ -45,65 +45,65 @@
 #}
 <div class="l-container">
 
-  <header class="l-header">
-    {{ page.header }}
-  </header>
+    <header class="l-header">
+        {{ page.header }}
+    </header>
 
-  {% if page.navigation %}
-    <nav class="l-navigation" >
-      {{ page.navigation }}
-    </nav>
-  {% endif %}
-
-  {{ page.primary_menu }}
-  {{ page.secondary_menu }}
-
-  {{ page.breadcrumb }}
-
-  {{ page.highlighted }}
-
-  {{ page.help }}
-
-  <main class="l-main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    {% if page.prefix %}
-      <div class="l-prefix" id="prefix-complimentary-1" role="complementary" aria-labelledby="prefix-complimentary-1">
-        {{ page.prefix }}
-      </div>
+    {% if page.navigation %}
+        <nav class="l-navigation">
+            {{ page.navigation }}
+        </nav>
     {% endif %}
 
-    <div class="l-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
+    {{ page.primary_menu }}
+    {{ page.secondary_menu }}
+
+    {{ page.breadcrumb }}
+
+    {{ page.highlighted }}
+
+    {{ page.help }}
+
+    <main class="l-main">
+        <a name="main" id="main" tabindex="-1"></a>{# link is in html.html.twig #}
+
+        {% if page.prefix %}
+            <div class="l-prefix" role="complementary" aria-label="{{ status_headings[type] }}">
+                {{ page.prefix }}
+            </div>
+        {% endif %}
+
+        <div class="l-content">
+            {{ page.content }}
+        </div>{# /.layout-content #}
 
 
-    {% if page.sidebar_first %}
-      <aside class="l-sidebar-first" >
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
+        {% if page.sidebar_first %}
+            <aside class="l-sidebar-first">
+                {{ page.sidebar_first }}
+            </aside>
+        {% endif %}
 
 
-    {% if page.postfix %}
-      <div class="l-postfix" id="prefix-complimentary-2" role="complementary" aria-labelledby="prefix-complimentary-2">
-        {{ page.postfix }}
-      </div>
-    {% endif %}
+        {% if page.postfix %}
+            <div class="l-postfix" role="complementary" aria-label="{{ status_headings[type] }}">
+                {{ page.postfix }}
+            </div>
+        {% endif %}
 
 
-  </main>
-
-  {% if page.pre_footer %}
-    <div class="l-pre-footer">
-      {{ page.pre_footer }}
-    </div>
-  {% endif %}
-
-  {% if page.footer %}
+    </main>
     <footer class="l-footer">
-      {{ page.footer }}
-    </footer>
-  {% endif %}
+        {% if page.pre_footer %}
+            <div class="l-pre-footer">
+                {{ page.pre_footer }}
+            </div>
+        {% endif %}
 
+        {% if page.footer %}
+
+            {{ page.footer }}
+
+        {% endif %}
+    </footer>
 </div>{# /.layout-container #}
