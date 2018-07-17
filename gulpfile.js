@@ -2,7 +2,7 @@
 // Set domain to null to disable BrowserSync.
 var domain = 'auto'; 
 
-var sassLintConfigFile = 'base-sass-lint.yml';
+var sassLintConfigFile = 'sass-lint.yml';
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
@@ -18,28 +18,31 @@ var notify = require('gulp-notify');
 var exec = require('child_process').exec;
 var fs = require('file-system');
 
-if (domain == 'auto') {
-  // Attempt to automatically get the domain name from Dev Desktop's config files.
-  domain = require('gulp-getdevdesktopdomain');
-  if (domain == null) {
-    log.warn(colors.yellow.bold('Warning: Could not set BrowserSync domain name automatically.'));
-    log.warn(colors.yellow.bold('  Manually set a domain name in gulpfile.js to use BrowserSync.'));
-  } else {
-    log.info('Found Dev Desktop domain: ' + colors.magenta(domain));
+// Function to check for the existence of the Sass-lint config file.
+function sassLintCheck() {
+  try {
+    fs.accessSync(sassLintConfigFile);
+    runSassLint = true;
+    log.info('Using sass-lint config file: ' + colors.magenta(sassLintConfigFile));
+  } catch (err) {
+    log.warn(colors.yellow.bold(`Warning: Sass-lint config file ${sassLintConfigFile} was not found. Sass-lint is disabled.`));
+    return false;
   }
-}
-
-// Check for existence of Sass-lint config file.
-var runSassLint = false;
-try {
-  fs.accessSync(sassLintConfigFile);
-  runSassLint = true;
-  log.info('Using sass-lint config file: ' + colors.magenta(sassLintConfigFile));
-} catch (err) {
-  log.warn(colors.yellow.bold(`Warning: Sass-lint config file ${sassLintConfigFile} was not found. Sass-lint is disabled.`));
-}
+  return true;
+};
 
 gulp.task('serve', function() {
+  if (domain == 'auto') {
+    // Attempt to automatically get the domain name from Dev Desktop's config files.
+    domain = require('gulp-getdevdesktopdomain');
+    if (domain == null) {
+      log.warn(colors.yellow.bold('Warning: Could not set BrowserSync domain name automatically.'));
+      log.warn(colors.yellow.bold('  Manually set a domain name in gulpfile.js to use BrowserSync.'));
+    } else {
+      log.info('Found Dev Desktop domain: ' + colors.magenta(domain));
+    }
+  }
+
   // Skip BrowserSync init if no domain is provided.
   if (domain) {
     browserSync.init({
@@ -58,25 +61,45 @@ gulp.task('browserSyncReload', function() {
   return browserSync.reload();
 });
 
+gulp.task('sass-lint', function(done, err) {
+  if (sassLintCheck()) {
+    stream = gulp.src("sass/**/*.scss")
+      .pipe(plumber(function(error) {
+        log.error(colors.red.bold('Error (' + error.plugin + '): ' + error.message));
+        this.emit('end');
+      }))
+      .pipe(plumber({errorHandler: notify.onError("Error : <%= error.message %>")}))
+      .pipe(sassLint({
+        configFile: sassLintConfigFile
+      }))
+      .pipe(sassLint.format())
+      .pipe(sassLint.failOnError());
+
+    return stream;
+  } else {
+    return done(err);
+  }
+});
+
+gulp.task('sass-lint-ci', function(cb) {
+  if (sassLintCheck()) {
+    exec("./node_modules/sass-lint/bin/sass-lint.js -v --max-warnings 0 -c " + sassLintConfigFile + " 'sass/**/*.scss'", function(err, stdout) {
+      log(stdout);
+      cb(err);
+    });
+  } else {
+    cb('No sass-lint config file');
+  }
+});
+
 gulp.task('sass', function() {
   stream = gulp.src("sass/**/*.scss")
     .pipe(plumber(function(error) {
       log.error(colors.red.bold('Error (' + error.plugin + '): ' + error.message));
       this.emit('end');
     }))
-    .pipe(plumber({errorHandler: notify.onError("Error : <%= error.message %>")}));
-
-  // Conditionally add sass-lint to the pipe if it has a config file. 
-  // Otherwise it spews out too many warnings that we don't care about.
-  if (runSassLint) {
-    stream = stream.pipe(sassLint({
-      configFile: sassLintConfigFile 
-     }))
-    .pipe(sassLint.format())
-    .pipe(sassLint.failOnError());
-  }
-
-  stream = stream.pipe(sourcemaps.init())
+    .pipe(plumber({errorHandler: notify.onError("Error : <%= error.message %>")}))
+    .pipe(sourcemaps.init())
     .pipe(sourcemaps.identityMap())
     .pipe(sass({
       outputStyle: 'expanded'
@@ -90,8 +113,10 @@ gulp.task('sass', function() {
       'safari >= 5',
       'opera >= 23',
       'ios >= 6',
-      'android >= 4.2'
-    ]))
+      'android >= 4.2',
+    ], {
+      grid: true
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("css"));
 
@@ -119,4 +144,5 @@ gulp.task('clearDrupalCache', function(done) {
   }
 });
 
-gulp.task('default', gulp.series(['sass', 'serve']));
+gulp.task('default', gulp.series(['sass-lint', 'sass', 'serve']));
+gulp.task('sass-lint-ci', gulp.series(['sass-lint-ci']));
