@@ -44,7 +44,7 @@ STARTERKIT.theme | your-theme-name `.theme`
 Any preprocess functions inside `includes` folder | all  `.inc`  files
 STARTERKIT.breakpoints.yml | your-theme-name `.breakpoints.yml`
 Any `STARTERKIT.` breakpoints inside `your-theme-name.breakpoints.yml`|   `your-theme-name.`
-Any `STARTERKIT_` preprocess functions inside the files in `/includes`
+Any `STARTERKIT_` preprocess functions inside the files in `/includes` folder
 
 and run `npm install` to install all the dependencies.
 
