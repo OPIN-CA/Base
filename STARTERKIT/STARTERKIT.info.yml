@@ -9,7 +9,7 @@ screenshot:           images/screenshot.svg
 
 #Libraries
 libraries:
-  - base/global
+  - STARTERKIT/global
 
 #CKEditor styles
 ckeditor_stylesheets:
