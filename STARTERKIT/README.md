@@ -31,7 +31,7 @@ npm install -g browser-sync
 
 ## Installation
 
-Move the STARTERKIT folder to /themes root and rename STARTERKIT everywhere with your theme name:
+Move the STARTERKIT folder to `/themes` root and rename STARTERKIT everywhere with your theme name:
 
 From | To
 --- | ---
@@ -44,6 +44,7 @@ STARTERKIT.theme | your-theme-name `.theme`
 Any preprocess functions inside `includes` folder | all  `.inc`  files
 STARTERKIT.breakpoints.yml | your-theme-name `.breakpoints.yml`
 Any `STARTERKIT.` breakpoints inside `your-theme-name.breakpoints.yml`|   `your-theme-name.`
+Any `STARTERKIT_` preprocess functions inside the files in `/includes`
 
 and run `npm install` to install all the dependencies.
 
