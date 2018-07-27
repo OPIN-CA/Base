@@ -1,0 +1,35 @@
+{
+  "name": "starterkit",
+  "version": "1.0.0",
+  "sasslintConfig": ".sass-lint.yml",
+  "description": "Base Drupal 8 theme",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "adaptive-placeholders": "~1.1.5",
+    "breakpoint-sass": "~2.7.1",
+    "mappy-breakpoints": "~0.2.3",
+    "susy": "^2.2.14",
+    "typi": "^3.1.2"
+  },
+  "devDependencies": {
+    "ansi-colors": "^2.0.1",
+    "breakpoint-sass": "~2.7.1",
+    "browser-sync": "^2.18.13",
+    "fancy-log": "^1.3.2",
+    "file-system": "^2.2.2",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-cache": "^1.0.1",
+    "gulp-getdevdesktopdomain": "^1.0.5",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sass-lint": "^1.3.4",
+    "gulp-sourcemaps": "^2.6.1",
+    "modularscale-sass": "^3.0.3",
+    "sass-lint": "^1.12.1",
+    "sass-mq": "^4.0.2"
+  },
+  "author": "Adrian Rylski",
+  "license": "ISC"
+}
