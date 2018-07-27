@@ -1,5 +1,5 @@
-# base
-Starter kit base Drupal 8 Theme.
+# STARTERKIT
+Starterkit for base Drupal 8 Theme.
 
 ## Global Prerequisites
 
