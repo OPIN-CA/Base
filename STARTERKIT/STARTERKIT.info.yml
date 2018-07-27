@@ -1,6 +1,6 @@
 name:                 STARTERKIT
 type:                 theme
-description:          Base Drupal 8 Theme.
+description:          STARTERKIT for Drupal 8 BASE Theme.
 VERISON:              1.1
 package:              Core
 core:                 8.x
