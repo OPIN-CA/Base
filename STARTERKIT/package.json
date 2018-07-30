@@ -1,7 +1,6 @@
 {
   "name": "starterkit",
   "version": "1.0.0",
-  "sasslintConfig": ".sass-lint.yml",
   "description": "Base Drupal 8 theme",
   "main": "gulpfile.js",
   "dependencies": {
