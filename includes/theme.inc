@@ -1,6 +1,13 @@
 <?php
 
 
+/**
+ * Implements hook_preprocess().
+ */
+function base_preprocess(&$variables, $hook){
+  // the 'language' variable is supposed to be globally available in Twig templates since Drupal 8.2, but sometimes it doesn't seem to work. Force it here.
+  $variables['language'] = \Drupal::languageManager()->getCurrentLanguage();
+}
 
 /**
  * Implements theme_suggestions_taxonomy_term_alter()
