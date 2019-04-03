@@ -1,9 +1,9 @@
-// Set domain to your local development domain or 'auto' to use BrowserSync.
-// Set domain to null to disable BrowserSync.
-var domain = 'auto'; 
+/*
+ * Please configure your custom variables in ./gulp-custom-vars.js. If you make
+ * personal changes to that file do not commit it back to the project repo.
+ */
 
-var sassLintConfigFile = 'sass-lint.yml';
-
+var customVars = require('./gulp-custom-vars');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var sassLint = require('gulp-sass-lint');
@@ -15,45 +15,48 @@ var plumber = require('gulp-plumber');
 var log = require('fancy-log');
 var colors = require('ansi-colors');
 var notify = require('gulp-notify');
-var exec = require('child_process').exec;
+var child_process = require('child_process');
 var fs = require('file-system');
+var Crawler = require('simplecrawler');
+var vnu = require('vnu-jar');
+var argv = require('yargs').argv;
 
 // Function to check for the existence of the Sass-lint config file.
 function sassLintCheck() {
   try {
-    fs.accessSync(sassLintConfigFile);
+    fs.accessSync(customVars.sassLintConfigFile);
     runSassLint = true;
-    log.info('Using sass-lint config file: ' + colors.magenta(sassLintConfigFile));
+    log.info('Using sass-lint config file: ' + colors.magenta(customVars.sassLintConfigFile));
   } catch (err) {
-    log.warn(colors.yellow.bold(`Warning: Sass-lint config file ${sassLintConfigFile} was not found. Sass-lint is disabled.`));
+    log.warn(colors.yellow.bold(`Warning: Sass-lint config file ${customVars.sassLintConfigFile} was not found. Sass-lint is disabled.`));
     return false;
   }
   return true;
 };
 
 gulp.task('serve', function() {
-  if (domain == 'auto') {
+  if (customVars.domain == 'auto') {
     // Attempt to automatically get the domain name from Dev Desktop's config files.
-    domain = require('gulp-getdevdesktopdomain');
-    if (domain == null) {
+    customVars.domain = require('gulp-getdevdesktopdomain');
+    if (customVars.domain == null) {
       log.warn(colors.yellow.bold('Warning: Could not set BrowserSync domain name automatically.'));
       log.warn(colors.yellow.bold('  Manually set a domain name in gulpfile.js to use BrowserSync.'));
     } else {
-      log.info('Found Dev Desktop domain: ' + colors.magenta(domain));
+      log.info('Found Dev Desktop domain: ' + colors.magenta(customVars.domain));
     }
   }
 
   // Skip BrowserSync init if no domain is provided.
-  if (domain) {
+  if (customVars.domain) {
     browserSync.init({
-      proxy: domain,
+      proxy: customVars.domain,
       scrollRestoreTechnique: 'window.name'
       // browser:     "google chrome"
     });
   }
 
-  gulp.watch("sass/**/*.scss").on('change', gulp.series(['sass']));
-  gulp.watch(["templates/**/*.twig", "includes/**/*.inc"]).on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
+  gulp.watch("sass/**/*.scss").on('change', gulp.series(['sass-lint', 'sass']));
+  gulp.watch(["templates/**/*.twig", "includes/**/*.inc", "sass/**/*.twig"]).on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
   gulp.watch('js/*.js').on('change', gulp.series(['browserSyncReload']));
 });
 
@@ -70,7 +73,7 @@ gulp.task('sass-lint', function(done, err) {
       }))
       .pipe(plumber({errorHandler: notify.onError("Error : <%= error.message %>")}))
       .pipe(sassLint({
-        configFile: sassLintConfigFile
+        configFile: customVars.sassLintConfigFile
       }))
       .pipe(sassLint.format())
       .pipe(sassLint.failOnError());
@@ -83,10 +86,10 @@ gulp.task('sass-lint', function(done, err) {
 
 gulp.task('sass-lint-ci', function(cb) {
   if (sassLintCheck()) {
-    exec("./node_modules/sass-lint/bin/sass-lint.js -v --max-warnings 0 -c " + sassLintConfigFile + " 'sass/**/*.scss'", function(err, stdout) {
-      log(stdout);
-      cb(err);
-    });
+    child_process.exec("./node_modules/sass-lint/bin/sass-lint.js -v --max-warnings 0 -c " + customVars.sassLintConfigFile + " 'sass/**/*.scss'", function(err, stdout) {
+      log(colors.red.bold(stdout));
+      cb();
+    }).on('exit', exitCode => process.exitCode = exitCode);
   } else {
     cb('No sass-lint config file');
   }
@@ -121,7 +124,7 @@ gulp.task('sass', function() {
     .pipe(gulp.dest("css"));
 
   // Only add BrowserSync to the stream if a domain name is provided.
-  if (domain) {
+  if (customVars.domain) {
     stream = stream.pipe(
       browserSync.stream({
         stream: true
@@ -132,11 +135,157 @@ gulp.task('sass', function() {
   return stream;
 });
 
+gulp.task('w3c-validate', function(done) {
+  var siteToCrawl = argv.site;
+  if (!siteToCrawl) {
+    log.error(colors.red.bold('Use --site to declare the site to crawl.'));
+    done();
+    return -1;
+  }
+
+  // Start vnu validator server.
+  vnuServer = child_process.spawn('java', [
+      '-cp',
+      vnu,
+      'nu.validator.servlet.Main',
+      '8888'
+    ], {
+    });
+
+  var crawler = new Crawler(siteToCrawl);
+  var violationsFound = 0;
+  var maxPages = 100;
+  var currentPageNum = 0;
+  var killCrawler = function () {
+    crawler.stop();
+    vnuServer.kill();
+
+    if (violationsFound > 0) {
+      log.error(colors.red.bold('W3C violations found: ' + violationsFound));
+      process.exitCode = 1;
+    }
+
+    done();
+  }
+
+  crawler.maxConcurrency = 8;
+  crawler.interval = 250;
+  crawler.maxDepth = 100;
+  crawler.timeout = 60000;
+  crawler.listenerTTL = 5000;
+  crawler.respectRobotsTxt = false;
+
+  // Skip files.
+  crawler.addFetchCondition(function(queueItem, referrerQueueItem, callback) {
+    callback(null, !queueItem.path.match(/\.[a-z]{3}(\?.*)?/i));
+  });
+
+  // Skip pages with query strings.
+  crawler.addFetchCondition(function(queueItem, referrerQueueItem, callback) {
+    callback(null, !queueItem.path.match(/\?.*=.*$/));
+  });
+
+  // Only download HTML pages.
+  crawler.addDownloadCondition(function(queueItem, referrerQueueItem, callback) {
+    if (queueItem.stateData.contentType) {
+      if (queueItem.stateData.contentType.indexOf('text/html') == 0) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    }
+  });
+
+  // Print a message if the response timeout is exceeded.
+  crawler.on('fetchtimeout', function(queueItem, responseBuffer, response) {
+    log.warn(colors.yellow.bold("Timed out: " + queueItem.url));
+  });
+
+  // Run validator on page.
+  crawler.on('fetchcomplete', function(queueItem, responseBuffer, response) {
+    currentPageNum++;
+    if (currentPageNum > maxPages) {
+      // Empty out the queue.
+      crawler.queue = new Crawler.queue()
+    }
+
+    log.info("Validating: " + colors.green(queueItem.url));
+    vnuClientCmd = child_process.spawnSync('java', [
+        '-cp',
+        vnu,
+        '-Dnu.validator.client.level=error',
+        'nu.validator.client.HttpClient',
+        '-'
+      ], {
+        input: responseBuffer.toString()
+      });
+
+    // Split validator output into an array of strings split at new lines.
+    var lines = vnuClientCmd.output.toString().split('\n');
+    lines.forEach(function(line) {
+      var printLine = false;
+
+      // Strip "[stdin]" from beginning of line.
+      line = line.replace('"[stdin]"', '');
+
+      // Only print errors.
+      if (line.match(/^:[^:]*: error/)) {
+        printLine = true;
+      }
+
+      // Some errors that we don't care about.
+      if (line.match(/An "img" element must have an "alt" attribute/)) {
+        printLine = false;
+      }
+      if (line.match(/Bad value "[^"]*" for attribute "rel" on element "link"/)) {
+        printLine = false;
+      }
+      if (line.match(/The "frameborder" attribute on the "iframe"/)) {
+        printLine = false;
+      }
+      if (line.match(/Attribute "about" not allowed on element "[^"]*" at this point./)) {
+        printLine = false;
+      }
+      if (line.match(/Attribute "autocorrect" not allowed on element "input" at this point./)) {
+        printLine = false;
+      }
+
+      if (printLine) {
+        // Use console.log instead of fancy-log because we don't want 
+        // timestamps here.
+        console.log(colors.red.bold(line));
+        violationsFound++;
+      }
+    });
+
+    // If the queue is empty then shut things down.
+    if (crawler.queue.length == 0) {
+      killCrawler();
+    }
+  });
+
+  crawler.on('complete', function () {
+    killCrawler();
+  });
+
+  // Watch for the VNU server availability.
+  vnuServer.stderr.on('data', function (data) {
+    if (data.toString().match(/INFO:oejs.Server:main: Started/)) {
+      // Start the crawler.
+      crawler.start();
+    }
+  });
+});
+
 gulp.task('clearDrupalCache', function(done) {
   drushCmd = 'drush cc render';
 
+  if (customVars.environment == 'lando') {
+    drushCmd = 'lando ' + drushCmd;
+  }
+
   if (drushCmd) {
-    exec(drushCmd, function (err, stdout, stderr) {
+    child_process.exec(drushCmd, function (err, stdout, stderr) {
       log(stdout);
       log(stderr);
       done();
@@ -146,3 +295,4 @@ gulp.task('clearDrupalCache', function(done) {
 
 gulp.task('default', gulp.series(['sass-lint', 'sass', 'serve']));
 gulp.task('sass-lint-ci', gulp.series(['sass-lint-ci']));
+gulp.task('w3c-validate', gulp.series(['w3c-validate']));
