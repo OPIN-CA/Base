@@ -1,8 +1,3 @@
-/*
- * Please configure your custom variables in ./gulp-custom-vars.js. If you make
- * personal changes to that file do not commit it back to the project repo.
- */
-
 var customVars = require('./gulp-custom-vars');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
