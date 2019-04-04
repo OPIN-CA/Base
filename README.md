@@ -189,7 +189,19 @@ search__pager.scss
 ```
 
 ### Gulp
-After installation run `gulp` in root directory. Gulp with open `localhost:3000` in your default browser and parse Acquia Dev Desktop local site url. If it fails or you are not using Acquia Dev Desktop add url to parse manually inside `var domain = 'auto';` replacing `auto`. For browsersync to work make sure [Browsersync](https://www.drupal.org/project/browsersync) is enabled. Go to Appearance > Default theme > Settings and check `Enable Browsersync` inside Browsersync Settings at the bottom of the page. As gulp runs, it watches sass and injects changes into the browser as you work.
+After installation run `gulp` in root directory. Gulp will open `localhost:3000` in your default browser and parse Acquia Dev Desktop local site url. If it fails or you are not using Acquia Dev Desktop add the url in the gulp-custom-vars.js file. Optionally, the Drupal [Browsersync](https://www.drupal.org/project/browsersync) module can be installed which will enable automatic style refreshing on any local URL (not just http://localhost:3000). Enable the module then go to Appearance > Default theme > Settings and check `Enable Browsersync` inside Browsersync Settings at the bottom of the page. As gulp runs, it watches sass and injects changes into the browser as you work.
 
+Gulp will watch for changes to Twig templates, automatically clear the cache and refresh the page using Browsersync. For this to work the command line environment needs to be set up correctly so Drush can be run. If you're using Acquia Dev Desktop you will need to set the PATH environment variable before running gulp. The export string can be copied from the terminal window that is opened by clicking the `Open Drush console` button in Dev Desktop. Paste it into the terminal that gulp will be run from. The string will look similar to this: 
+
+```export PHP_ID=php7_1; export PATH="/Applications/DevDesktop/$PHP_ID/bin:/Applications/DevDesktop/mysql/bin:/Applications/DevDesktop/tools:$PATH"```
+
+### Common issues
+
+1. Receiving an error during `clearDrupalCache`:
+   ```[10:51:15] Starting 'clearDrupalCache'...
+   [10:51:15] ERROR: Could not clear Drupal cache.```
+   
+   Set the environment variables as outlined in the Gulp section above.
+   
 ## Maintainers
 Base theme is maintained by [Adrian Rylski](https://www.drupal.org/u/liamtoo) & Jesse Kahtava.
