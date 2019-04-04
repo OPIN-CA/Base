@@ -42,10 +42,10 @@ summary {
    width: 16px;
    border-radius: 50%;
 
-   background-image: url(../images/icons/icon__minus.svg);
+   background-image: url('../images/icons/icon__minus.svg');
    background-repeat: no-repeat;
    background-size: 16px 16px;
-   content: " ";
+   content: ' ';
    margin-top: -6px;
  }
 }
@@ -54,10 +54,10 @@ details[open] summary::before {
  height: 16px;
  width: 16px;
 
- background-image: url(../images/icons/icons__plus.svg);
+ background-image: url('../images/icons/icons__plus.svg');
  background-repeat: no-repeat;
  background-size: 16px 16px;
- content: " ";
+ content: ' ';
 }
 
 .collapse-processed > summary::before {
@@ -65,7 +65,7 @@ details[open] summary::before {
 }
 
 .vertical-tabs__panes {
-  details{
+  details {
     padding: vr(1);
   }
 }

@@ -1,5 +1,5 @@
 //Instagram embed
-div[data-oembed-url*="instagram"] {
+div[data-oembed-url*='instagram'] {
   text-align: center;
 
   iframe {
@@ -15,7 +15,7 @@ div[data-oembed-url*="instagram"] {
   text-align: center;
 
   .twitter-tweet,
-  iframe{
+  iframe {
     display: inline-block !important;
   }
 }

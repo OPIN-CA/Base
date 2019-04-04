@@ -1,4 +1,3 @@
-
 html {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,29 +12,29 @@ body {
 }
 
 //IE hack to remove border from linked img
-a img{
-    border: 0px;
+a img {
+  border: 0px;
 }
 
-.more-link{
+.more-link {
   margin-top: vr(.25);
   text-transform: uppercase;
   font-size: .8rem;
   letter-spacing: $letter-spacing;
 
 
-  a{
+  a {
     padding-right: vr(.5);
     display: inline-block;
     color: $color__primary;
     font-weight: bold;
 
-    &::after{
+    &::after {
       content: ' ';
       width: 10px;
       height: 10px;
       display: inline-block;
-      background-image: url(../images/arrows/icons__arrow—link.svg);
+      background-image: url('../images/arrows/icons__arrow—link.svg');
       background-repeat: no-repeat;
       background-size: 10px 10px;
       margin-left: .25rem;
@@ -72,15 +71,15 @@ img {
   max-width: 100%;
 }
 
-hr{
-    display: block;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
-    border-color: $color__primary;
+hr {
+  display: block;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+  border-color: $color__primary;
 }
 
 
@@ -127,7 +126,7 @@ h6 {
 }
 
 ///Resetting paragraph margins
-p + p{
+p + p {
   margin-top: vr(.75);
 }
 
@@ -184,25 +183,25 @@ h6 {
 }
 
 
-.block--page-title h1{
+.block--page-title h1 {
 
-  @include mappy-bp(768px){
+  @include mappy-bp(768px) {
     margin-top: 0;
   }
 }
 
-.addthis{
+.addthis {
   padding-top: vr(.5);
 
-  a{
-    &:hover{
+  a {
+    &:hover {
       border-bottom: none !important;
       opacity: .8;
     }
   }
 
-  .at-share-btn{
-    &:hover{
+  .at-share-btn {
+    &:hover {
       transform: translateY(0) !important;
     }
   }

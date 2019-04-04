@@ -1,14 +1,14 @@
-input[type="date"],
-input[type="email"],
-input[type="file"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
+input[type='date'],
+input[type='email'],
+input[type='file'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
 textarea,
 select {
   border: 1px solid $color__input-border--normal;
@@ -16,15 +16,15 @@ select {
   padding: .5em;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
+input[type='text'],
+input[type='email'],
+input[type='tel'],
+input[type='date'],
 select {
   height: 2.75em;
 }
 
-input[type="search"],
+input[type='search'],
 select {
   appearance: none;
   border: 1px solid $color__input-border--normal;
@@ -32,13 +32,13 @@ select {
 }
 
 input,
-textarea{
+textarea {
   appearance: none;
   border-radius: 0;
 }
 
 select {
-  background: url(../images/arrows/icon__arrow—down.svg) no-repeat;
+  background: url('../images/arrows/icon__arrow—down.svg') no-repeat;
   background-color: #FFFFFF;
   background-position: 95%;
   background-size: 1em;
@@ -47,14 +47,14 @@ select {
 
 
 select,
-input[type="radio"]:hover,
-input[type="checkbox"]:hover {
+input[type='radio']:hover,
+input[type='checkbox']:hover {
   cursor: pointer;
 }
 
 
 *:focus,
-*[aria-expanded="true"],
+*[aria-expanded='true'],
 button,
 .btn,
 a.btn,

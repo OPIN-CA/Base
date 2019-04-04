@@ -27,9 +27,9 @@
     @for $i from 2 through $length {
       $rest: append($rest, nth($keys, $i));
     }
-    @return map-fetch($value, $rest)
-  }
-  @else {
+
+    @return map-fetch($value, $rest);
+  } @else {
     @return $value;
   }
 }

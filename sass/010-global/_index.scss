@@ -5,20 +5,14 @@
 @import '../node_modules/modularscale-sass/stylesheets/modularscale';
 @import '../node_modules/sass-mq/mq';
 
-
-
-  @import 'normalize';
-  @import 'variables';
-  @import "colors/index";
-
-  @import 'mixins';
-  @import 'extends';
-
-  @import 'type/index';
-  @import 'layout/index';
-
-  @import 'functions';
-  @import "icons/index";
-  @import 'utility/index';
-
-   @import 'accessibility';
+@import 'normalize';
+@import 'variables';
+@import 'colors/index';
+@import 'mixins';
+@import 'extends';
+@import 'type/index';
+@import 'layout/index';
+@import 'functions';
+@import 'icons/index';
+@import 'utility/index';
+@import 'accessibility';

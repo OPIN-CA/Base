@@ -4,7 +4,7 @@
 .breadcrumb {
   clear: both;
 
-  &__intro{
+  &__intro {
     display: inline-block;
     float: left;
   }
@@ -21,11 +21,11 @@
 
 &__item {
   display: inline;
-  margin-right: 0.5em;
+  margin-right: .5em;
 
   &::after {
     content: '>';
-    margin-left: 0.5em;
+    margin-left: .5em;
   }
 
   &:last-child::after {

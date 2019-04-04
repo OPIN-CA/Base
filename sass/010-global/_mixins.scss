@@ -1,5 +1,3 @@
-
-
 // ==========
 // ADD-CONTEXT
 // -----
@@ -30,7 +28,7 @@
 
 /// @author Vova Skok
 /// @content Styles which go inside of chosen breakpoint
-/// @throw "Invalid breakpoint `#{$name}`"
+/// @throw 'Invalid breakpoint `#{$name}`'
 /// @example
 ///  @include breakpoint(small);
 /// @output
@@ -42,7 +40,7 @@
 
 
 @mixin add-context($layout, $breakpoint, $span, $location: null) {
-  @if type-of($location) == "string" {
+  @if type-of($location) == 'string' {
     $contexts: _susy-deep-set($contexts, $layout, $breakpoint, $span of susy-get(columns) susy-get(gutter) $location) !global;
   } @else {
     $contexts: _susy-deep-set($contexts, $layout, $breakpoint, $span of susy-get(columns) susy-get(gutter) at $location) !global;
@@ -170,13 +168,13 @@
 ///Shapes mixin: triangle
 @mixin triangle($dir, $size, $color) {
   border: $size transparent solid;
-  @if $dir == "top" or $dir == "up" {
+  @if $dir == 'top' or $dir == 'up' {
     border-bottom-color: $color;
-  } @else if $dir == "right" or $dir == "after" {
+  } @else if $dir == 'right' or $dir == 'after' {
     border-left-color: $color;
-  } @else if $dir == "bottom" or $dir == "down" {
+  } @else if $dir == 'bottom' or $dir == 'down' {
     border-top-color: $color;
-  } @else if $dir == "left" or $dir == "before" {
+  } @else if $dir == 'left' or $dir == 'before' {
     border-right-color: $color;
   }
 }
@@ -184,10 +182,10 @@
 
 /// Keep the footer at the bottom of the site
 /// @example
-///   @include sticky-footer(20em, "#site", "#push", "#footer");
+///   @include sticky-footer(20em, '#site', '#push', '#footer');
 /// @source http://codepen.io/zoerooney/pen/vtdFw
 /// @author Zoe Rooney
-@mixin sticky-footer($footer-height, $wrapper-selector: unquote("#site"), $container-selector: unquote("#wrap-all"), $footer-selector: unquote("#footer")) {
+@mixin sticky-footer($footer-height, $wrapper-selector: unquote('#site'), $container-selector: unquote('#wrap-all'), $footer-selector: unquote('#footer')) {
   html, body {
     height: 100%;
   }
@@ -224,7 +222,7 @@
 /// Generic label styles helpers
 /// @group helpers
 
-@mixin label{
+@mixin label {
   text-transform: uppercase;
   font-size: .8rem;
   font-family: $font-secondary;
@@ -233,7 +231,7 @@
 
 /// Generic date styles helpers
 /// @group helpers
-@mixin date{
+@mixin date {
   font-weight: 300;
   font-size: .8rem;
 }
@@ -265,7 +263,7 @@
   &:#{$position} {
     @if $icon {
       // A particular icon has been specified
-      content: "#{map-get($icons, $icon)}";
+      content: '#{map-get($icons, $icon)}';
     }
     @if $styles {
       // Supportive icon styles required

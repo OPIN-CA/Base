@@ -12,13 +12,12 @@ $susy: (
   gutters: 1 / 2,
   gutter-position: before, // before | after | split | inside | inside-static (requires column-width)
   global-box-sizing: border-box, // content-box | border-box (affects inside/inside-static)
-  debug:
-    (
-      image: hide, //show | hide | show-columns | show-baseline
-      color: rgba(blue, .2),
-      output: background, // background | overlay
-      toggle: bottom right, //	right | left and top | bottom
-    ),
+  debug: (
+    image: hide, //show | hide | show-columns | show-baseline
+    color: rgba(blue, .2),
+    output: background, // background | overlay
+    toggle: bottom right, //	right | left and top | bottom
+  ),
 );
 
 ///Extra map for guttles grid
@@ -32,8 +31,6 @@ $sidebars-gutter: (
 
 //Setting Box sizing for the site
 @include border-box-sizing;
-
-
 
 body {
   @include container(1200px);
