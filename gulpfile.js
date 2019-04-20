@@ -50,9 +50,9 @@ gulp.task('serve', function() {
     });
   }
 
-  gulp.watch("sass/**/*.scss").on('change', gulp.series(['sass-lint', 'sass']));
-  gulp.watch(["templates/**/*.twig", "includes/**/*.inc", "sass/**/*.twig"]).on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
-  gulp.watch('js/*.js').on('change', gulp.series(['browserSyncReload']));
+  gulp.watch("src/**/*.scss").on('change', gulp.series(['sass-lint', 'sass']));
+  gulp.watch(["src/**/*.twig", "includes/**/*.inc", "sass/**/*.twig"]).on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
+  gulp.watch('src/*.js').on('change', gulp.series(['browserSyncReload']));
 });
 
 gulp.task('browserSyncReload', function() {
@@ -91,7 +91,7 @@ gulp.task('sass-lint-ci', function(cb) {
 });
 
 gulp.task('sass', function() {
-  stream = gulp.src("sass/**/*.scss")
+  stream = gulp.src("src/**/*.scss")
     .pipe(plumber(function(error) {
       log.error(colors.red.bold('Error (' + error.plugin + '): ' + error.message));
       this.emit('end');
@@ -116,7 +116,7 @@ gulp.task('sass', function() {
       grid: true
     }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest("css"));
+    .pipe(gulp.dest("dist/css"));
 
   // Only add BrowserSync to the stream if a domain name is provided.
   if (customVars.domain) {
@@ -246,7 +246,7 @@ gulp.task('w3c-validate', function(done) {
       }
 
       if (printLine) {
-        // Use console.log instead of fancy-log because we don't want 
+        // Use console.log instead of fancy-log because we don't want
         // timestamps here.
         console.log(colors.red.bold(line));
         violationsFound++;

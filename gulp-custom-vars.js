@@ -9,7 +9,7 @@
  */
 
 module.exports = {
-  'domain': 'auto',
+  'domain': 'http://sci.lndo.site:8080/',
   'environment': 'devdesktop',
   'sassLintConfigFile': 'sass-lint.yml'
 };

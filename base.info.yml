@@ -5,7 +5,7 @@ VERISON:              1.1
 package:              Core
 core:                 8.x
 base theme:           stable
-screenshot:           images/screenshot.svg
+screenshot:           src/global/assets/screenshot.svg
 
 #Libraries
 libraries:
@@ -13,7 +13,7 @@ libraries:
 
 #CKEditor styles
 ckeditor_stylesheets:
-  - css/ckeditor.css
+  - dist/css/ckeditor.css
 
 #Regions
 regions:

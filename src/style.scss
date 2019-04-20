@@ -1,0 +1,20 @@
+////////////////////////
+// Style File
+//
+// This file gets turned into style.css. This file should really hold nothing except for imports of your base, style guide, layouts, modules, and states partials.
+////////////////////////
+
+////////////////////////
+// Config Import
+////////////////////////
+ @import 'sass-config/index';
+
+////////////////////////
+// Global Import
+////////////////////////
+ @import 'global/global-sass/index';
+
+////////////////////////
+// Components Import
+////////////////////////
+@import 'components/index';
