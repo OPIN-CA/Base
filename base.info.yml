@@ -1,11 +1,11 @@
 name:                 BASE
 type:                 theme
 description:          Base Drupal 8 Theme.
-VERISON:              1.1
+version:              v1.2
 package:              Core
 core:                 8.x
 base theme:           stable
-screenshot:           src/global/assets/screenshot.svg
+screenshot:           src/global/global-assets/screenshot.svg
 
 #Libraries
 libraries:

@@ -1,0 +1,12 @@
+// import node modules first
+@import '../sass-config/index';
+
+// global styles
+
+@import 'type/index',
+        'accessiblity/index',
+        'admin/index',
+        'files/index',
+        'forms/index',
+        'layouts/index',
+        'tables/index';

@@ -12,9 +12,17 @@
 ////////////////////////
 // Global Import
 ////////////////////////
- @import 'global/global-sass/index';
+ @import 'global/index';
 
 ////////////////////////
 // Components Import
 ////////////////////////
-@import 'components/index';
+@import 'blocks/index',
+        'components/index',
+        'media/index',
+        'menus/index',
+        'nodes/index',
+        'regions/index',
+        'taxonomies/index',
+        'utility-elements/index',
+        'views/index';
