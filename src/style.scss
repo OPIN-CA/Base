@@ -7,22 +7,23 @@
 ////////////////////////
 // Config Import
 ////////////////////////
- @import 'sass-config/index';
+ @import '010_sass-config/index';
 
 ////////////////////////
 // Global Import
 ////////////////////////
- @import 'global/index';
+ @import '020_global/index';
 
 ////////////////////////
 // Components Import
 ////////////////////////
-@import 'blocks/index',
-        'components/index',
-        'media/index',
-        'menus/index',
-        'nodes/index',
-        'regions/index',
-        'taxonomies/index',
-        'utility-elements/index',
-        'views/index';
+@import '030_layouts/index',
+        '040_admin/index',
+        '050_nodes/index',
+        '060_blocks/index',
+        '070_views/index',
+        '080_components/index',
+        '090_taxonomies/index',
+        '100_media/index',
+        '110_menus/index',
+        '120_utility/index';

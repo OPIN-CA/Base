@@ -1,0 +1,46 @@
+
+
+// colors
+$color__white: #FFFFFF;
+$color__grey--lighter: #F9F9F9;
+$color__grey--light: #D5D5D5;
+$color__grey--dark: #414A51;
+$color__black: #000C2A;
+
+$color__red: #DC3545;
+
+$color__blue--darker: #003767;
+$color__blue--dark: #114676;
+$color__blue: #216088;
+
+$color__teal: #009FBD;
+
+// Default Colors
+
+// PRIMARY
+$color__primary:                 $color__blue--darker;
+$color__secondary:               #007F61;
+
+// bkg
+$color__bkg--grey:               $color__grey--lighter;
+
+//TEXT
+$color__text--dark:              $color__grey--dark;
+$color__text--light:             #4D4D4D;
+$color__text--white:             $color__white;
+
+// FORMS
+$color__input-border--normal:    #CDCDCD;
+$color__input-border--active:    #CDCDCD;
+$color__input-border--focus:     #CDCDCD;
+$color__input-bkg--normal:       #CDCDCD;
+$color__input--placeholder:      rgba(65, 74, 81, 0.7);
+
+$color__fieldset-border--normal: #CDCDCD;
+$color__fieldset-bkg--normal:    rgb(126, 94, 94);
+
+$color__submit-border--normal:   #007F61;
+$color__submit-bkg--normal:      #007F61;
+
+// TABLES
+$color__table--border:           #CCCCCC;

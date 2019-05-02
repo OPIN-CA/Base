@@ -1,0 +1,22 @@
+.node-preview-container {
+  width: auto;
+  background: $color__grey--light;
+
+  .node-preview-backlink {
+    background-color: $color__primary;
+    padding: .5rem;
+    color:  $color__white;
+    text-transform: uppercase;
+    font-size: .6rem;
+    letter-spacing: .0223em;
+    @extend %animate;
+
+    &:hover {
+      background-color: darken($color__primary, 2%);
+    }
+  }
+
+  .form-item-view-mode {
+    display: none;
+  }
+}

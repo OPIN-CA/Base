@@ -5,11 +5,17 @@
 ////////////////////////
 
 ////////////////////////
-// Base Import
+// Config Import
 ////////////////////////
-@import 'global/index';
+ @import '010_sass-config/index';
 
 ////////////////////////
-// Components Code
-// Only include the components you want to be styled in ckeditor.
-// @import 'components/index';
+// Base Import
+////////////////////////
+@import '020_global/index';
+////////////////////////
+
+////////////////////////
+// ckeditor file Import
+////////////////////////
+@import '040_admin/ckeditor/index';

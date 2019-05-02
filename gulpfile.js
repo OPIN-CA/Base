@@ -1,5 +1,6 @@
 var customVars = require('./gulp-custom-vars');
 var gulp = require('gulp');
+var gulpFlatten = require('gulp-flatten');
 var sass = require('gulp-sass');
 var sassLint = require('gulp-sass-lint');
 var autoprefixer = require('gulp-autoprefixer');
@@ -15,6 +16,7 @@ var fs = require('file-system');
 var Crawler = require('simplecrawler');
 var vnu = require('vnu-jar');
 var argv = require('yargs').argv;
+var babel = require("gulp-babel");
 
 // Function to check for the existence of the Sass-lint config file.
 function sassLintCheck() {
@@ -52,7 +54,7 @@ gulp.task('serve', function() {
 
   gulp.watch("src/**/*.scss").on('change', gulp.series(['sass-lint', 'sass']));
   gulp.watch(["src/**/*.twig", "includes/**/*.inc", "sass/**/*.twig"]).on('change', gulp.series(['clearDrupalCache', 'browserSyncReload']));
-  gulp.watch('src/*.js').on('change', gulp.series(['browserSyncReload']));
+  gulp.watch('src/**/*.js').on('change', gulp.series(['es6build', 'browserSyncReload']));
 });
 
 gulp.task('browserSyncReload', function() {
@@ -128,6 +130,16 @@ gulp.task('sass', function() {
   }
 
   return stream;
+});
+
+// Use Babel to compile ES6 to ES5 (compatable with IE10+)
+// Minify files after they are compiled
+gulp.task("es6build", function () {
+  stream = gulp.src("src/**/*.js")
+    .pipe(babel())
+    .pipe(gulpFlatten())
+    .pipe(gulp.dest("dist/js"))
+    return stream;
 });
 
 gulp.task('w3c-validate', function(done) {
