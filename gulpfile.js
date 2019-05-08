@@ -180,6 +180,7 @@ gulp.task('w3c-validate', function(done) {
   crawler.maxDepth = 100;
   crawler.timeout = 60000;
   crawler.listenerTTL = 5000;
+  crawler.ignoreInvalidSSL = true;
   crawler.respectRobotsTxt = false;
 
   // Skip files.
@@ -200,6 +201,16 @@ gulp.task('w3c-validate', function(done) {
       } else {
         callback(null, false);
       }
+    }
+  });
+
+  // Print the error message for 'fetchclienterror' events.
+  crawler.on('fetchclienterror', function(queueItem, error) {
+    log.error(colors.red.bold("Client error: " + error));
+    
+    if (siteToCrawl.indexOf('https') === 0) {
+      log.error(colors.red.bold("THIS IS MOST LIKELY DUE TO AN INVALID SSL CERTIFICATE."));
+      log.error(colors.red.bold("Try a http:// address instead."));
     }
   });
 
