@@ -64,7 +64,7 @@ rules:
   shorthand-values: 0
   url-quotes: 1
   variable-for-property: 0
-  zero-unit: 0
+  zero-unit: 1
   class-name-format: 0
 
   # Inner Spacing
