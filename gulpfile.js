@@ -63,7 +63,7 @@ gulp.task('browserSyncReload', function() {
 
 gulp.task('sass-lint', function(done, err) {
   if (sassLintCheck()) {
-    stream = gulp.src("sass/**/*.scss")
+    stream = gulp.src("src/**/*.scss")
       .pipe(plumber(function(error) {
         log.error(colors.red.bold('Error (' + error.plugin + '): ' + error.message));
         this.emit('end');
@@ -83,7 +83,7 @@ gulp.task('sass-lint', function(done, err) {
 
 gulp.task('sass-lint-ci', function(cb) {
   if (sassLintCheck()) {
-    child_process.exec("./node_modules/sass-lint/bin/sass-lint.js -v --max-warnings 0 -c " + customVars.sassLintConfigFile + " 'sass/**/*.scss'", function(err, stdout) {
+    child_process.exec("./node_modules/sass-lint/bin/sass-lint.js -v --max-warnings 0 -c " + customVars.sassLintConfigFile + " 'src/**/*.scss'", function(err, stdout) {
       log(colors.red.bold(stdout));
       cb();
     }).on('exit', exitCode => process.exitCode = exitCode);
