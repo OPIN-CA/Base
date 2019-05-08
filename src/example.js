@@ -4,7 +4,6 @@
   // DO NOT USE! MEANT FOR EXAMPLE PURPOSES.
   // Try to avoid having a global.js file. Only use small, js files.
 
-
   // Example of Drupal behavior loaded.
   Drupal.behaviors.themeJS = {
     attach: function(context, settings) {
