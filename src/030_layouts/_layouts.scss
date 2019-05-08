@@ -1,50 +1,50 @@
-.region-alerts{
+.region-alerts {
 
 }
 
-.region-utility-navigation{
+.region-utility-navigation {
   background-color: $color__grey--lighter;
   padding: 1rem;
 
-  @include mappy-bp(large){
+  @include mappy-bp(large) {
     padding: 1rem 0;
   }
 }
 
-.sidebar-first{
-  .region-sidebar-first{
+.sidebar-first {
+  .region-sidebar-first {
   @include span(12 of 12);
     @include mappy-bp(large) {
       @include span(first 3 of 12 after);
     }
   }
-  .region-content{
+  .region-content {
     @include mappy-bp(large) {
       @include span(first 9 of 12 before);
     }
   }
 }
 
-.region-footer{
+.region-footer {
   background-color: $color__blue--darker;
   padding: 3rem 1rem;
 
-  @include mappy-bp(large){
+  @include mappy-bp(large) {
     padding: 1rem 0;
   }
 }
 
-.region-copyright{
+.region-copyright {
   background-color: $color__black;
   padding: 1rem;
 
-  @include mappy-bp(large){
+  @include mappy-bp(large) {
     padding: 1rem 0;
   }
 }
 
 // Adds max-width to l-constrain elements.
 // See region.html.twig for all regions that have constrains
-.l-constrain{
+.l-constrain {
   @include container(large);
 }
