@@ -1,8 +1,11 @@
-.region-alerts {
-
+.l-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.region-utility-navigation {
+.region-navigation {
   background-color: $color__grey--lighter;
   padding: 1rem;
 
@@ -25,7 +28,7 @@
   }
 }
 
-.region-footer {
+.region-pre-footer {
   background-color: $color__blue--darker;
   padding: 3rem 1rem;
 
@@ -34,7 +37,7 @@
   }
 }
 
-.region-copyright {
+.region-footer {
   background-color: $color__black;
   padding: 1rem;
 

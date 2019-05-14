@@ -32,7 +32,7 @@ summary {
    width: 16px;
    border-radius: 50%;
 
-   background-image: url('../../assets/icons/default-icons/icon__minus.svg');
+   background-image: url('../../src/000_assets/icons/theme-defaults/icon__minus.svg');
    background-repeat: no-repeat;
    background-size: 16px 16px;
    content: ' ';
@@ -44,7 +44,7 @@ details[open] summary::before {
  height: 16px;
  width: 16px;
 
- background-image: url('../../assets/icons/default-icons/icons__plus.svg');
+ background-image: url('../../src/000_assets/icons/theme-defaults/icons__plus.svg');
  background-repeat: no-repeat;
  background-size: 16px 16px;
  content: ' ';

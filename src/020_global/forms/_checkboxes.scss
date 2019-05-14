@@ -16,25 +16,25 @@ input[type='radio'] {
 }
 
 input[type='checkbox']:checked + label {
-  background-image: url('../../assets/checkboxes/icon-checkbox-checked.svg');
+  background-image: url('../../src/000_assets/checkboxes/icon-checkbox-checked.svg');
   background-repeat: no-repeat;
   background-size: 21px 21px;
 
   ///IE10 hack
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    background-image: url('../../assets/checkboxes/icon-checkbox-checked.png');
+    background-image: url('../../src/000_assets/checkboxes/icon-checkbox-checked.png');
     background-size: 21px 21px;
   }
 }
 
 input[type='checkbox'] + label {
-  background-image: url('../../assets/checkboxes/icon-checkbox.svg');
+  background-image: url('../../src/000_assets/checkboxes/icon-checkbox.svg');
   background-repeat: no-repeat;
   background-size: 21px 21px;
 
   ///IE10 hack
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    background-image: url('../../assets/checkboxes/icon-checkbox.png');
+    background-image: url('../../src/000_assets/checkboxes/icon-checkbox.png');
     background-size: 21px 21px;
   }
 }
