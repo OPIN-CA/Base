@@ -1,27 +1,29 @@
 input[type='checkbox'],
-input[type='radio'] {
+input[type='radio'],
+#drupal-off-canvas input[type='checkbox'],
+#drupal-off-canvas input[type='radio'] {
   opacity: 0;
   display: none;
-}
-
-input[type='checkbox'],
-input[type='radio'] {
   line-height: normal;
   margin-top: 1px;
 }
 
-input[type='radio'] + label {
+input[type='radio'] + label,
+#drupal-off-canvas input[type='radio'] + label {
   display: inline;
   font-weight: 400;
   padding: 0 0 0 2rem;
+  font-size: 1rem;
 }
 
-input[type='radio']:checked + label {
+input[type='radio']:checked + label,
+#drupal-off-canvas input[type='radio']:checked + label {
   background: url('../../src/000_assets/radio/icon-radio-checked.svg') no-repeat;
-  background-size: 21px 21px;
+  background-size: 18px 18px;
 }
 
-input[type='radio'] + label {
+input[type='radio'] + label,
+#drupal-off-canvas input[type='radio'] + label {
   background: url('../../src/000_assets/radio/icon-radio.svg') no-repeat;
-  background-size: 21px 21px;
+  background-size: 18px 18px;
 }

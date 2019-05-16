@@ -1,61 +1,86 @@
 details {
- border: 0;
- padding-left: 0;
- padding-right: 0;
- padding-top: 0;
+  border: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
 }
 
 summary {
+  position: relative;
+  line-height: 1;
+  padding: vr(.5);
 
- position: relative;
- line-height: 1;
- padding: vr(.5);
-
- cursor: pointer;
- font-size: 1rem;
- font-weight: 700;
- margin-bottom: vr(.5);
- padding-left: 2rem;
- text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: vr(.5);
+  padding-left: 2rem;
+  text-transform: uppercase;
 
 
- &::-webkit-details-marker {
-   display: none;
- }
+&::-webkit-details-marker {
+  display: none;
+}
 
- &::before {
-   position: absolute;
-   left: 10px;
-   top: 18px;
-   display: inline-block;
-   height: 16px;
-   width: 16px;
-   border-radius: 50%;
+  &::before {
+    position: absolute;
+    left: 10px;
+    top: 18px;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
 
-   background-image: url('../../src/000_assets/icons/theme-defaults/icon__minus.svg');
-   background-repeat: no-repeat;
-   background-size: 16px 16px;
-   content: ' ';
-   margin-top: -6px;
- }
+    background-image: url('../../src/000_assets/icons/theme-defaults/icon__minus.svg');
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    content: ' ';
+    margin-top: -6px;
+  }
 }
 
 details[open] summary::before {
- height: 16px;
- width: 16px;
+  height: 16px;
+  width: 16px;
 
- background-image: url('../../src/000_assets/icons/theme-defaults/icons__plus.svg');
- background-repeat: no-repeat;
- background-size: 16px 16px;
- content: ' ';
+  background-image: url('../../src/000_assets/icons/theme-defaults/icons__plus.svg');
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  content: ' ';
 }
 
 .collapse-processed > summary::before {
- display: none !important;
+  display: none !important;
 }
 
 .vertical-tabs__panes {
   details {
     padding: vr(1);
+  }
+}
+
+// layout builder specific
+#drupal-off-canvas {
+  details summary {
+    padding-left: 2rem;
+
+    &::before {
+      width: 12px;
+      height: 12px;
+      background-image: url('../../src/000_assets/icons/theme-defaults/icon__minus--white.svg');
+      background-size: 12px 12px;
+      margin-top: -9px;
+    }
+  }
+  details[open] summary {
+    padding-left: 2rem;
+
+    &::before {
+      width: 12px;
+      height: 12px;
+      background-image: url('../../src/000_assets/icons/theme-defaults/icon__plus--white.svg');
+      background-size: 12px 12px;
+      margin-top: -7px;
+    }
   }
 }

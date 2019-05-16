@@ -1,45 +1,43 @@
 input[type='checkbox'],
-input[type='radio'] {
+input[type='radio'],
+#drupal-off-canvas input[type='checkbox'],
+#drupal-off-canvas input[type='radio'] {
   display: none;
-}
-
-input[type='checkbox'],
-input[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
   line-height: normal;
   margin: 1px \9 0 0;
 }
 
-input[type='checkbox'],
-input[type='radio'] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-input[type='checkbox']:checked + label {
+input[type='checkbox']:checked + label,
+#drupal-off-canvas input[type='checkbox']:checked + label {
   background-image: url('../../src/000_assets/checkboxes/icon-checkbox-checked.svg');
   background-repeat: no-repeat;
-  background-size: 21px 21px;
+  background-size: 18px 18px;
 
   ///IE10 hack
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     background-image: url('../../src/000_assets/checkboxes/icon-checkbox-checked.png');
-    background-size: 21px 21px;
+    background-size: 18px 18px;
   }
 }
 
-input[type='checkbox'] + label {
+input[type='checkbox'] + label,
+#drupal-off-canvas input[type='checkbox'] + label {
   background-image: url('../../src/000_assets/checkboxes/icon-checkbox.svg');
   background-repeat: no-repeat;
-  background-size: 21px 21px;
+  background-size: 18px 18px;
+  font-size: 1rem;
 
   ///IE10 hack
   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     background-image: url('../../src/000_assets/checkboxes/icon-checkbox.png');
-    background-size: 21px 21px;
+    background-size: 18px 18px;
   }
 }
 
-input[type='checkbox'] + label {
+input[type='checkbox'] + label,
+#drupal-off-canvas input[type='checkbox'] + label {
   display: inline;
   font-weight: 400;
   padding: 0 0 0 26px;
