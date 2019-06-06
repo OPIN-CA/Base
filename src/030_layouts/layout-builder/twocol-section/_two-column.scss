@@ -1,0 +1,86 @@
+// New styles
+
+@include mappy-bp(land large) {
+  .layout--twocol-section {
+    // 33/67, 67/33
+    &.layout--twocol-section--33-67 > .layout__region--first,
+    &.layout--twocol-section--67-33 > .layout__region--second,
+    &.layout--twocol-section--33-67 > .layout__region--second,
+    &.layout--twocol-section--67-33 > .layout__region--first {
+      flex: 0 1 50%;
+    }
+
+    // 25/75, 75/25
+    &.layout--twocol-section--25-75 > .layout__region--first,
+    &.layout--twocol-section--75-25 > .layout__region--second,
+    &.layout--twocol-section--25-75 > .layout__region--second,
+    &.layout--twocol-section--75-25 > .layout__region--first  {
+      flex: 0 1 50%;
+    }
+  }
+}
+
+
+
+
+/*
+  * Weird ie11 issue where the flex-basis has to be explicitly specified with
+  * the padding that will be added in order for the browser to properly render
+  * the width. In this case, 8px on left and right side so 16px total.
+  */
+
+
+@include mappy-bp(land large) {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .layout--twocol-section {
+      // 33/67, 67/33
+      &.layout--twocol-section--33-67 > .layout__region--first,
+      &.layout--twocol-section--67-33 > .layout__region--second,
+      &.layout--twocol-section--33-67 > .layout__region--second,
+      &.layout--twocol-section--67-33 > .layout__region--first,
+      // 25/75, 75/25
+      &.layout--twocol-section--25-75 > .layout__region--first,
+      &.layout--twocol-section--75-25 > .layout__region--second,
+      &.layout--twocol-section--25-75 > .layout__region--second,
+      &.layout--twocol-section--75-25 > .layout__region--first  {
+        flex-basis: calc(50% - 16px);
+      }
+    }
+  }
+}
+
+@include mappy-bp(large) {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    // Just grabbed the styles from the core templates and slightly changed.
+    .layout--twocol-section {
+      // 50/50
+      &.layout--twocol-section--50-50 > .layout__region--first,
+      &.layout--twocol-section--50-50 > .layout__region--second {
+        flex-basis: calc(50% - 16px);
+      }
+
+      // 33/67, 67/33
+      &.layout--twocol-section--33-67 > .layout__region--first,
+      &.layout--twocol-section--67-33 > .layout__region--second {
+        flex-basis: calc(33% - 16px);
+      }
+
+      &.layout--twocol-section--33-67 > .layout__region--second,
+      &.layout--twocol-section--67-33 > .layout__region--first {
+        flex-basis: calc(67% - 16px);
+      }
+
+      // 25/75, 75/25
+      &.layout--twocol-section--25-75 > .layout__region--first,
+      &.layout--twocol-section--75-25 > .layout__region--second {
+        flex-basis: calc(25% - 16px);
+      }
+
+      &.layout--twocol-section--25-75 > .layout__region--second,
+      &.layout--twocol-section--75-25 > .layout__region--first {
+        flex-basis: calc(75% - 16px);
+      }
+    }
+  }
+}
