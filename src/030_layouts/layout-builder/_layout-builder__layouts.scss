@@ -1,0 +1,91 @@
+// Based on core's stable theme and it's layout files
+@media screen and (min-width: 40em) {
+  // Sets the gutters. On it's own works on modern browsers.
+  .layout--fourcol-section,
+  .layout--threecol-section,
+  .layout--twocol-section {
+    margin-left: -8px;
+    margin-right: -8px;
+
+    > * {
+      padding-left: 8px;
+      padding-right: 8px;
+
+      // adds margin to elements within the columns
+      > * {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+/*
+  * Weird ie11 issue where the flex-basis has to be explicitly specified with
+  * the padding that will be added in order for the browser to properly render
+  * the width. In this case, 8px on left and right side so 16px total.
+  */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  @include mappy-bp(40em) {
+    /* IE10+ CSS styles go here */
+    // Just grabbed the styles from the core templates and slightly changed.
+    .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--first,
+    .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--second {
+      flex-basis: calc(50% - 16px);
+    }
+
+    .layout--twocol-section.layout--twocol-section--33-67 > .layout__region--first,
+    .layout--twocol-section.layout--twocol-section--67-33 > .layout__region--second {
+      flex-basis: calc(33% - 16px);
+    }
+
+    .layout--twocol-section.layout--twocol-section--33-67 > .layout__region--second,
+    .layout--twocol-section.layout--twocol-section--67-33 > .layout__region--first {
+      flex-basis: calc(67% - 16px);
+    }
+
+    .layout--twocol-section.layout--twocol-section--25-75 > .layout__region--first,
+    .layout--twocol-section.layout--twocol-section--75-25 > .layout__region--second {
+      flex-basis: calc(25% - 16px);
+    }
+
+    .layout--twocol-section.layout--twocol-section--25-75 > .layout__region--second,
+    .layout--twocol-section.layout--twocol-section--75-25 > .layout__region--first {
+      flex-basis: calc(75% - 16px);
+    }
+
+    // 3 column
+    .layout--threecol-section--25-50-25 > .layout__region--first,
+    .layout--threecol-section--25-50-25 > .layout__region--third,
+    .layout--threecol-section--25-25-50 > .layout__region--first,
+    .layout--threecol-section--25-25-50 > .layout__region--second,
+    .layout--threecol-section--50-25-25 > .layout__region--second,
+    .layout--threecol-section--50-25-25 > .layout__region--third {
+      flex-basis: calc(25% - 16px);
+    }
+    .layout--threecol-section--25-50-25 > .layout__region--second,
+    .layout--threecol-section--25-25-50 > .layout__region--third,
+    .layout--threecol-section--50-25-25 > .layout__region--first {
+      flex-basis: calc(50% - 16px);
+    }
+    .layout--threecol-section--33-34-33 > .layout__region--first,
+    .layout--threecol-section--33-34-33 > .layout__region--third {
+      flex-basis: calc(33% - 16px);
+    }
+    .layout--threecol-section--33-34-33 > .layout__region--second {
+      flex-basis: calc(34% - 16px);
+    }
+
+    // 4 column
+    .layout--fourcol-section > .layout__region {
+      flex-basis: calc(25% - 16px);
+    }
+  }
+}
