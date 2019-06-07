@@ -150,6 +150,11 @@ gulp.task('w3c-validate', function(done) {
     return -1;
   }
 
+  // Add http:// to the URL if the site string doesn't have a scheme.
+  if (!siteToCrawl.startsWith('http://') && !siteToCrawl.startsWith('https://')) {
+    siteToCrawl = 'http://' + siteToCrawl;
+  }
+
   // Start vnu validator server.
   vnuServer = child_process.spawn('java', [
       '-cp',
