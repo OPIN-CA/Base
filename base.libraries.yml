@@ -4,6 +4,8 @@ global:
   css:
     theme:
       dist/css/style.css: {}
+  js:
+    dist/js/accessibility.js: {}
 
 # Included polyfill globally for ES6 partial backwards compatibility with ie10+.
 # Make sure to include as a dependency for any js files that use ES6
