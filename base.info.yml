@@ -5,7 +5,7 @@ version:              v1.2.0
 package:              Core
 core:                 8.x
 base theme:           stable
-screenshot:           src/assets/screenshot.svg
+screenshot:           src/000_assets/screenshot.svg
 
 #Libraries
 libraries:

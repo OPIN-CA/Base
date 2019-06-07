@@ -1,0 +1,116 @@
+@include mappy-bp(land large) {
+  // 3 column
+
+  // .layout--threecol-section {
+  //   > .layout__region--third {
+  //     margin-top: 1rem;
+  //   }
+  // }
+
+  // 50/25/25, 25/50/25, 25/25/50
+  .layout--threecol-50-25-25 > .layout__region--first,
+  .layout--threecol-50-25-25 > .layout__region--second,
+  .layout--threecol-25-50-25 > .layout__region--first,
+  .layout--threecol-25-50-25 > .layout__region--second,
+  .layout--threecol-25-25-50 > .layout__region--first,
+  .layout--threecol-25-25-50 > .layout__region--second,
+  .layout--threecol-33-34-33 > .layout__region--first,
+  .layout--threecol-33-34-33 > .layout__region--second {
+    flex: 0 1 50%;
+  }
+  .layout--threecol-50-25-25 > .layout__region--third,
+  .layout--threecol-25-50-25 > .layout__region--third,
+  .layout--threecol-25-25-50 > .layout__region--third,
+  .layout--threecol-33-34-33 > .layout__region--third {
+    flex: 0 1 100%;
+  }
+}
+
+@include mappy-bp(large) {
+  .layout--threecol-section {
+    > .layout__region--third {
+      margin-top: 0;
+    }
+  }
+
+  // 50/25/25, 25/50/25, 25/25/50
+  .layout--threecol-25-50-25 > .layout__region--first,
+  .layout--threecol-25-50-25 > .layout__region--third,
+  .layout--threecol-25-25-50 > .layout__region--first,
+  .layout--threecol-25-25-50 > .layout__region--second,
+  .layout--threecol-50-25-25 > .layout__region--second,
+  .layout--threecol-50-25-25 > .layout__region--third {
+    flex: 0 1 25%;
+  }
+  .layout--threecol-25-50-25 > .layout__region--second,
+  .layout--threecol-25-25-50 > .layout__region--third,
+  .layout--threecol-50-25-25 > .layout__region--first {
+    flex: 0 1 50%;
+  }
+  // 33/34/33
+  .layout--threecol-33-34-33 > .layout__region--first,
+  .layout--threecol-33-34-33 > .layout__region--third {
+    flex: 0 1 33%;
+  }
+  .layout--threecol-33-34-33 > .layout__region--second {
+    flex: 0 1 34%;
+  }
+}
+
+/*
+  * Weird ie11 issue where the flex-basis has to be explicitly specified with
+  * the padding that will be added in order for the browser to properly render
+  * the width. In this case, 8px on left and right side so 16px total.
+  */
+@include mappy-bp(land large) {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+
+    // 50/25/25, 25/50/25, 25/25/50
+    .layout--threecol-50-25-25 > .layout__region--first,
+    .layout--threecol-50-25-25 > .layout__region--second,
+    .layout--threecol-25-50-25 > .layout__region--first,
+    .layout--threecol-25-50-25 > .layout__region--second,
+    .layout--threecol-25-25-50 > .layout__region--first,
+    .layout--threecol-25-25-50 > .layout__region--second,
+    .layout--threecol-33-34-33 > .layout__region--first,
+    .layout--threecol-33-34-33 > .layout__region--second {
+      flex-basis: calc(50% - 16px);
+    }
+    .layout--threecol-50-25-25 > .layout__region--third,
+    .layout--threecol-25-50-25 > .layout__region--third,
+    .layout--threecol-25-25-50 > .layout__region--third,
+    .layout--threecol-33-34-33 > .layout__region--third {
+      flex-basis: calc(100% - 16px);
+    }
+  }
+}
+
+@include mappy-bp(large) {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+
+    // 50/25/25, 25/50/25, 25/25/50
+    .layout--threecol-25-50-25 > .layout__region--first,
+    .layout--threecol-25-50-25 > .layout__region--third,
+    .layout--threecol-25-25-50 > .layout__region--first,
+    .layout--threecol-25-25-50 > .layout__region--second,
+    .layout--threecol-50-25-25 > .layout__region--second,
+    .layout--threecol-50-25-25 > .layout__region--third {
+      flex-basis: calc(25% - 16px);
+    }
+    .layout--threecol-25-50-25 > .layout__region--second,
+    .layout--threecol-25-25-50 > .layout__region--third,
+    .layout--threecol-50-25-25 > .layout__region--first {
+      flex-basis: calc(50% - 16px);
+    }
+    // 33/34/33
+    .layout--threecol-33-34-33 > .layout__region--first,
+    .layout--threecol-33-34-33 > .layout__region--third {
+      flex-basis: calc(33% - 16px);
+    }
+    .layout--threecol-33-34-33 > .layout__region--second {
+      flex-basis: calc(34% - 16px);
+    }
+  }
+}

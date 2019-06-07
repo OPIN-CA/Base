@@ -1,0 +1,66 @@
+// Based on core's stable theme and it's layout files
+
+.node__content > .layout {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.layout--fourcol-section,
+.layout--threecol-section,
+.layout--twocol-section {
+  display: block;
+
+  // adds margin top/bottom to layout regions
+  > .layout__region {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+    // adds margin to elements within the columns
+    > * {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@include mappy-bp(land) {
+  // Sets the gutters. On it's own works on modern browsers.
+  .layout--fourcol-section,
+  .layout--threecol-section,
+  .layout--twocol-section {
+    display: flex;
+    margin-left: -8px;
+    margin-right: -8px;
+
+    > .layout__region {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    > * {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+}

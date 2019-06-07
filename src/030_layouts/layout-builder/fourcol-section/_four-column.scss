@@ -1,0 +1,57 @@
+
+@include mappy-bp(land) {
+  .layout--fourcol-section {
+    > .layout__region--third,
+    > .layout__region--fourth {
+      margin-top: 1rem;
+    }
+
+    > .layout__region {
+      flex: 0 1 50%;
+    }
+  }
+}
+
+@include mappy-bp(large) {
+  .layout--fourcol-section {
+    > .layout__region--third,
+    > .layout__region--fourth {
+      margin-top: 0;
+    }
+
+    > .layout__region {
+      flex: 0 1 25%;
+    }
+  }
+}
+
+
+/*
+  * Weird ie11 issue where the flex-basis has to be explicitly specified with
+  * the padding that will be added in order for the browser to properly render
+  * the width. In this case, 8px on left and right side so 16px total.
+  */
+
+// Same as flex 3rd property. Just remove the gutter padding (16px)
+@include mappy-bp(land) {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .layout--fourcol-section {
+      > .layout__region {
+        flex-basis: calc(50% - 16px);
+      }
+    }
+  }
+}
+
+@include mappy-bp(large) {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    // Just grabbed the styles from the core templates and slightly changed.
+    // 4 column
+    .layout--fourcol-section {
+      > .layout__region {
+        flex-basis: calc(25% - 16px);
+      }
+    }
+  }
+}
