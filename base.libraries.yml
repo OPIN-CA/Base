@@ -6,6 +6,12 @@ global:
       dist/css/style.css: {}
   js:
     dist/js/accessibility.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+    - core/modernizr
 
 # Included polyfill globally for ES6 partial backwards compatibility with ie10+.
 # Make sure to include as a dependency for any js files that use ES6
@@ -14,16 +20,13 @@ ES6-polyfill:
   js:
     libraries/polyfill/polyfill.js: {}
 
-# USED AS AN EXAMPLE ONLY
-# Add the js files to the src folder in the folder that best fits.
-# This will compile the file into the dist/js directory.
-# example-js:
-#   version: 1.x
-#   js:
-#     dist/js/global.js: {}
-#   dependencies:
-#     - core/jquery
-#     - core/drupal
-#     - core/drupalSettings
-#     - core/jquery.once
-#     - core/modernizr
+# Utility Navigation
+utility-navigation:
+  version: 1.x
+  js:
+    dist/js/utility-navigation.js: {}
+
+# Mobile Menu
+mobile-menu:
+  js:
+    dist/js/mobile-menu.js: {}

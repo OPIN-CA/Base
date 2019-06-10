@@ -19,6 +19,7 @@ ckeditor_stylesheets:
 regions:
   header:             Header
   navigation:         Navigation
+  mobile_navigation:  Mobile Navigation
   prefix:             Prefix
   sidebar_first:      First sidebar
   content:            Content
