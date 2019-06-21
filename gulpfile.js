@@ -146,8 +146,15 @@ gulp.task('w3c-validate', function(done) {
   var siteToCrawl = argv.site;
   if (!siteToCrawl) {
     log.error(colors.red.bold('Use --site to declare the site to crawl.'));
+    process.exitCode = 1;
     done();
-    return -1;
+  }
+
+  var basicAuthUsername = argv.username;
+  var basicAuthPassword = argv.password;
+  if ((basicAuthUsername && !basicAuthPassword) || (!basicAuthUsername && basicAuthPassword)) {
+    log.warn(colors.yellow.bold('For HTTP Basic Auth to work both a username and'
+      + ' password must be provided. Not using HTTP Basic Auth.'));
   }
 
   // Add http:// to the URL if the site string doesn't have a scheme.
@@ -187,6 +194,13 @@ gulp.task('w3c-validate', function(done) {
   crawler.listenerTTL = 5000;
   crawler.ignoreInvalidSSL = true;
   crawler.respectRobotsTxt = false;
+
+  // Set up HTTP Basic Auth login.
+  if (basicAuthUsername && basicAuthPassword) {
+    crawler.needsAuth = true;
+    crawler.authUser = basicAuthUsername;
+    crawler.authPass = basicAuthPassword;
+  }
 
   // Skip files.
   crawler.addFetchCondition(function(queueItem, referrerQueueItem, callback) {
@@ -289,6 +303,14 @@ gulp.task('w3c-validate', function(done) {
 
   crawler.on('complete', function () {
     killCrawler();
+
+    // If the crawler didn't crawl any pages then something is wrong.
+    // Print an error message.
+    if (currentPageNum == 0) {
+      log.error(colors.red.bold('No pages were crawled. Something is wrong.'));
+      process.exitCode = 1;
+      done();
+    }
   });
 
   // Watch for the VNU server availability.
