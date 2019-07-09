@@ -196,7 +196,7 @@ gulp.task('w3c-validate', function(done) {
 
   // Ignore all SSL certificates if the 'ignoreSSL' command line argument
   // is set.
-  if (argv.ignoreSSL === true || argv.ignoreSSL.toLowerCase() == 'true') {
+  if (argv.ignoreSSL === true || argv.ignoreSSL == 'true') {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
     crawler.ignoreInvalidSSL = true;
   }
