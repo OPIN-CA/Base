@@ -192,8 +192,14 @@ gulp.task('w3c-validate', function(done) {
   crawler.maxDepth = 100;
   crawler.timeout = 60000;
   crawler.listenerTTL = 5000;
-  crawler.ignoreInvalidSSL = true;
   crawler.respectRobotsTxt = false;
+
+  // Ignore all SSL certificates if the 'ignoreSSL' command line argument
+  // is set.
+  if (argv.ignoreSSL === true || argv.ignoreSSL.toLowerCase() == 'true') {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    crawler.ignoreInvalidSSL = true;
+  }
 
   // Set up HTTP Basic Auth login.
   if (basicAuthUsername && basicAuthPassword) {
